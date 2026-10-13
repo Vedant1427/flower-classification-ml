@@ -9,8 +9,7 @@ Flower Classification is an image classification project that identifies the cat
 This project extracts visual features from flower images, trains multiple machine learning models, compares their performance, and evaluates the selected model using standard classification metrics.
 
 **Project Type:** Machine Learning / Image Classification  
-**Language:** Python  
-**Dataset:** Flower Images  
+**Programming Language:** Python  
 **Models:** Logistic Regression, K-Nearest Neighbors, Support Vector Machine, Random Forest
 
 ## 🎯 Objectives
@@ -19,7 +18,7 @@ This project extracts visual features from flower images, trains multiple machin
 - Extract useful colour, edge, and image features.
 - Train and compare multiple machine learning algorithms.
 - Evaluate performance using accuracy, precision, recall, and F1-score.
-- Visualize model performance using graphs.
+- Visualize model performance through graphs.
 - Save the trained model for future predictions.
 
 ## 🛠️ Technologies and Libraries
@@ -44,101 +43,75 @@ The real flower dataset contains five categories:
 - Sunflower
 - Tulip
 
-The project also includes a synthetic demonstration dataset with Daisy, Lavender, Rose, Sunflower, and Tulip folders. These generated images are used to test the pipeline and are not real flower photographs.
-
-## 📂 Project Structure
-
-```text
-flower-classification-ml/
-│
-├── flower_image_classification.py
-├── download_dataset.py
-├── requirements.txt
-├── README.md
-│
-├── data/
-│   └── demo_flowers/
-│
-└── outputs/
-    ├── 03_model_comparison.png
-    ├── 04_confusion_matrix.png
-    ├── 05_per_class_scores.png
-    ├── 07_learning_curve.png
-    ├── results.txt
-    └── flower_model.joblib
-```
-
-*Note: The output files are generated when the project runs. The real dataset is downloaded separately.*
+The project also includes a synthetic demonstration dataset. These generated images are used to test the program and are not real flower photographs.
 
 ## ⚙️ Project Workflow
 
 ### 1. Dataset Collection
 
-The project loads flower images from folders organized by category. The included downloader retrieves the real flower dataset.
+The project loads flower images organized into folders according to their categories. The included dataset downloader retrieves the real flower dataset.
 
 ### 2. Image Preprocessing
 
-Images are loaded and resized to 64 × 64 pixels to standardize their dimensions.
+Images are loaded and resized to 64 × 64 pixels to standardize their dimensions and make feature extraction consistent.
 
 ### 3. Feature Extraction
 
 The project converts images into numerical features that machine learning algorithms can understand.
 
-It extracts:
+The extracted features include:
 
-- HSV colour histogram features
-- Edge and shape histogram features
-- Resized image thumbnail features
+- **HSV colour histogram:** Represents the distribution of colours in an image.
+- **Edge and shape histogram:** Captures information about edges and visual structure.
+- **Image thumbnail features:** Preserve simplified visual and spatial information.
 
 These features are combined into a vector of 960 numerical values per image.
 
 ### 4. Model Training
 
-Four supervised machine learning algorithms are compared:
+Four supervised machine learning algorithms are compared.
 
-- **Logistic Regression:** Learns relationships between image features and flower classes.
-- **K-Nearest Neighbors (KNN):** Predicts a flower class using similar training examples.
-- **Support Vector Machine (SVM):** Separates categories using learned decision boundaries.
+- **Logistic Regression:** Learns relationships between image features and flower categories.
+- **K-Nearest Neighbors (KNN):** Predicts a category based on similar training examples.
+- **Support Vector Machine (SVM):** Learns decision boundaries to separate flower categories.
 - **Random Forest:** Combines multiple decision trees to make predictions.
 
-The project uses three-fold cross-validation to compare the models and GridSearchCV to tune the SVM.
+The project uses three-fold cross-validation to compare models and GridSearchCV to tune the SVM.
 
 ### 5. Model Evaluation
 
-The selected model is evaluated on a held-out test dataset. Performance is measured using accuracy, precision, recall, F1-score, and a confusion matrix.
+The selected model is evaluated on a held-out test dataset. Its performance is measured using accuracy, precision, recall, F1-score, and a confusion matrix.
 
 ### 6. Model Saving
 
-The trained model and its class names are saved using Joblib in `outputs/flower_model.joblib`.
+The selected trained model and its class names are saved using Joblib in `outputs/flower_model.joblib`.
 
 ### 7. Flower Prediction
 
-After training, the saved model can predict the category of a new flower image.
+After training, the saved model can be used to predict the category of a new flower image.
 
 ## 📊 Model Outputs and Visualizations
 
-The following four graphs are the main visualizations generated by this project.
-
 ### 1. Model Comparison
 
-**File:** `outputs/03_model_comparison.png`
+**Output:** `outputs/03_model_comparison.png`
 
 ![Model Comparison](outputs/03_model_comparison.png)
 
-This graph compares the cross-validation performance of Logistic Regression, KNN, SVM, and Random Forest.
+This graph compares the cross-validation accuracy of Logistic Regression, KNN, SVM, and Random Forest.
 
 **Interpretation:**
 - Higher accuracy indicates better average classification performance during cross-validation.
-- Comparing models helps identify promising algorithms.
-- The final test-set evaluation provides a separate measure of generalization.
+- The comparison helps identify promising algorithms.
+- The final test-set evaluation provides a separate measure of model performance.
 
 ### 2. Confusion Matrix
 
-**File:** `outputs/04_confusion_matrix.png`
+**Output:** `outputs/04_confusion_matrix.png`
 
 ![Confusion Matrix](outputs/04_confusion_matrix.png)
 
-The confusion matrix compares the actual flower categories with the categories predicted by the model.
+The confusion matrix compares the actual flower categories with the categories predicted by the selected model.
 
 **Interpretation:**
 - The main diagonal represents correct predictions.
@@ -147,11 +120,11 @@ The confusion matrix compares the actual flower categories with the categories p
 
 ### 3. Precision, Recall and F1-Score
 
-**File:** `outputs/05_per_class_scores.png`
+**Output:** `outputs/05_per_class_scores.png`
 
 ![Precision Recall and F1 Score](outputs/05_per_class_scores.png)
 
-This graph compares three important evaluation metrics for each flower category.
+This graph compares precision, recall, and F1-score for each flower category.
 
 - **Precision:** How many predictions for a category were correct.
 - **Recall:** How many actual images of a category were correctly identified.
@@ -161,7 +134,7 @@ Values closer to 1.0 generally indicate better performance.
 
 ### 4. Learning Curve
 
-**File:** `outputs/07_learning_curve.png`
+**Output:** `outputs/07_learning_curve.png`
 
 ![Learning Curve](outputs/07_learning_curve.png)
 
@@ -177,91 +150,22 @@ The learning curve shows how training and validation performance change as the a
 | Metric | Explanation |
 |---|---|
 | Accuracy | Percentage of test images classified correctly |
-| Precision | Reliability of positive predictions for a class |
+| Precision | Reliability of predictions for a particular class |
 | Recall | Percentage of actual class images correctly identified |
 | F1-score | Balance between precision and recall |
 | Confusion Matrix | Shows correct and incorrect predictions |
 | Cross-validation Accuracy | Average performance across validation folds |
 
-### Important Note About Results
+### Understanding the Results
 
 The synthetic demonstration dataset is designed to test the program workflow. Results from synthetic images must not be treated as evidence of real-world flower recognition accuracy.
 
-For a meaningful project evaluation, download the real flower dataset, train the model, and report the actual results recorded in `outputs/results.txt`.
-
-## 💻 Installation and Setup
-
-### Prerequisites
-
-- Python 3.9 or newer
-- Git
-- Internet connection to download the real dataset
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/Vedant1427/flower-classification-ml.git
-cd flower-classification-ml
-```
-
-### Step 2: Create a Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-### Step 3: Install Dependencies
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-## ▶️ Running the Project
-
-### Option 1: Run with Demonstration Images
-
-```bash
-python flower_image_classification.py data/demo_flowers
-```
-
-This runs the pipeline using the included synthetic images and generates the evaluation outputs.
-
-### Option 2: Run with the Real Dataset
-
-Download the dataset:
-
-```bash
-python download_dataset.py
-```
-
-Train and evaluate the model:
-
-```bash
-python flower_image_classification.py data/flower_photos --max-images 3000
-```
-
-The program trains and compares the models, evaluates the selected model, and generates the output graphs.
-
-### Option 3: Predict a New Flower Image
-
-After training, use:
-
-```bash
-python flower_image_classification.py --predict "path/to/flower.jpg"
-```
-
-Replace the example path with the location of your image.
+For meaningful evaluation, run the project on the real flower dataset and use the actual scores recorded in `outputs/results.txt`.
 
 ## ⚠️ Limitations
 
 - The project uses handcrafted features rather than a deep learning architecture.
-- Lighting, backgrounds, image quality, and flower similarities can affect predictions.
+- Lighting, backgrounds, image quality, and similarities between flowers can affect predictions.
 - Synthetic demonstration results do not establish real-world performance.
 - Model performance can vary depending on the dataset and training configuration.
 
