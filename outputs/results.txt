@@ -1,0 +1,54 @@
+============================================================
+1. LOADING DATASET
+============================================================
+Dataset folder : data/flower_photos
+Flower classes : ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+Loading up to 3000 images, resizing to 64x64 ...
+Images loaded  : 3000   (skipped unreadable: 0)
+Feature matrix : 3000 samples x 960 features
+
+Images per class:
+daisy         600
+dandelion     600
+roses         600
+sunflowers    600
+tulips        600
+
+============================================================
+2. TRAIN / TEST SPLIT
+============================================================
+Train: 2400 images | Test: 600 images (stratified 80/20)
+
+============================================================
+3. MODEL COMPARISON (3-fold cross-validation on training set)
+============================================================
+Logistic Regression    mean acc = 0.4825  (+/- 0.0062)
+KNN                    mean acc = 0.4642  (+/- 0.0239)
+SVM (RBF)              mean acc = 0.5821  (+/- 0.0099)
+Random Forest          mean acc = 0.5725  (+/- 0.0071)
+
+============================================================
+4. HYPERPARAMETER TUNING (SVM, GridSearchCV)
+============================================================
+Best params : {'clf__C': 10, 'clf__gamma': 0.001, 'pca__n_components': 100}
+Best CV acc : 0.5988
+
+============================================================
+5. TEST SET EVALUATION
+============================================================
+Test accuracy: 0.6333
+
+Classification report:
+              precision    recall  f1-score   support
+
+       daisy      0.639     0.633     0.636       120
+   dandelion      0.633     0.675     0.653       120
+       roses      0.544     0.517     0.530       120
+  sunflowers      0.701     0.783     0.740       120
+      tulips      0.638     0.558     0.596       120
+
+    accuracy                          0.633       600
+   macro avg      0.631     0.633     0.631       600
+weighted avg      0.631     0.633     0.631       600
+
+Misclassified test images: 220 of 600
